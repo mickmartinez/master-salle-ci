@@ -1,5 +1,8 @@
 pipeline {
    agent any
+   parameters {
+      string(name: 'version', description: '1.0.0')
+   }
    stages {
       stage('Compile & Test') {
          steps {
