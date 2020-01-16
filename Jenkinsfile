@@ -11,7 +11,7 @@ pipeline {
       }
       stage('Package') {
          steps {
-            echo "Building"
+            echo "Building $version"
             bat 'mvn package -DskipTests'
          }
       }
