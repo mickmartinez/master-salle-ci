@@ -17,6 +17,7 @@ pipeline {
       }
       stage('Acceptance Test'){
          steps{
+            echo 'Executing Acceptance Test'
             bat 'mvn -Dtest=ExampleResourceIT test'
             junit 'target/surefire-reports/*.xml'
          }
