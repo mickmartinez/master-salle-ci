@@ -15,5 +15,11 @@ pipeline {
             bat 'mvn package -DskipTests'
          }
       }
+      stage('Acceptance Test'){
+         steps{
+            bat 'mvn -Dtest=ExampleResourceIT test'
+            junit 'target/surefire-reports/*.xml'
+         }
+      }
    }
 }
