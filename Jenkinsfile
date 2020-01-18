@@ -25,8 +25,17 @@ pipeline {
       stage('Staging'){
          steps{
             echo 'Deploying to pre-production environment'
+            bat 'docker rm -f greetings_app_staging || true'
             bat 'docker build -f src/main/docker/Dockerfile.jvm -t quarkus/code-with-quarkus-jvm .'
-            bat 'docker run -i --rm -p 9090:9090 quarkus/code-with-quarkus-jvm'
+            bat 'docker run --name greetings_app_staging -i --rm -p 9090:8080 quarkus/code-with-quarkus-jvm'
+         }
+      }
+      stage('Production'){
+         steps{
+            echo 'Deploying to production environment'
+            bat 'docker rm -f greetings_app || true'
+            bat 'docker build -f src/main/docker/Dockerfile.jvm -t quarkus/code-with-quarkus-jvm .'
+            bat 'docker run --name greetings_app -i --rm -p 5000:8080 quarkus/code-with-quarkus-jvm'
          }
       }
    }
