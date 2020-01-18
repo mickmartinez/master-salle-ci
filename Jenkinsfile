@@ -32,6 +32,9 @@ pipeline {
          }
       }
       stage('Production'){
+         input{
+            message "Deploy to Production?"
+         }
          steps{
             echo 'Deploying to production environment'
             bat 'docker rm -f greetings_app_staging || (exit 0)'
