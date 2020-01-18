@@ -25,8 +25,8 @@ pipeline {
       stage('Staging'){
          steps{
             echo 'Deploying to pre-production environment'
-            sh 'docker build -f src/main/docker/Dockerfile.jvm -t quarkus/code-with-quarkus-jvm .'
-            sh 'docker run -i --rm -p 9090:9090 quarkus/code-with-quarkus-jvm'
+            bat 'docker build -f /src/main/docker/Dockerfile.jvm -t quarkus/code-with-quarkus-jvm .'
+            bat 'docker run -i --rm -p 9090:9090 quarkus/code-with-quarkus-jvm'
          }
       }
    }
